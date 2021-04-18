@@ -60,3 +60,32 @@
     
 # Generic Input File Format
 ![alt text](https://github.com/ciurescuraul/location-based-upsell/blob/944f9b997578742a54205e5c712d222e4246564b/input-file-format.png)
+
+#EventProcessor
+- Spring Boot Application
+- Input
+    - JMS entries in Queue
+    
+- Output
+    - SMS-es
+    
+- Configuration
+    - JMS Queue
+    - DB connection
+    - SMS-Gateway: url, username, password
+    
+- Logic
+    - A dispatcher module reads the records from JMS Queue one-by-one
+    - Based on ClientId, it calls the plugin
+    - The plugin:
+        - Will determine if the call was done from an Interest Area 
+            - Check Cell-Id in DB
+        - Will determine what type of campaign applies in that specific Interest Area (e.g. Concert or Airport)
+        - For 'concert' campaign type, grab the message content from DB and directly send the SMS
+        - For 'airport' campaign type, we do one more query in DB to determine if subscriber has roaming offer or not. If he does not have the roaming offer, then we send an SMS with the upsell atempt (e.g. "For 4 EUR, you may purchase a roaming package" ).
+    
+![alt_text](https://github.com/ciurescuraul/location-based-upsell/blob/43c5649ae89dbbc180b4719fbe2743367bdbed2f/no-campaign-diagram.png)
+
+![alt_text](https://github.com/ciurescuraul/location-based-upsell/blob/37362d4e91acfc99f119a882fd99d73667703ee7/concert-campaign-diagram.png)
+
+![alt_text](https://github.com/ciurescuraul/location-based-upsell/blob/37362d4e91acfc99f119a882fd99d73667703ee7/airport-campaign-diagram.png)
