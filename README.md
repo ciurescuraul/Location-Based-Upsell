@@ -61,7 +61,7 @@
 # Generic Input File Format
 ![alt text](https://github.com/ciurescuraul/location-based-upsell/blob/944f9b997578742a54205e5c712d222e4246564b/input-file-format.png)
 
-#EventProcessor
+# EventProcessor
 - Spring Boot Application
 - Input
     - JMS entries in Queue
