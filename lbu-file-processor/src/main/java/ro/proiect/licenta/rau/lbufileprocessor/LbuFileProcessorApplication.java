@@ -5,9 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import ro.proiect.licenta.rau.lbu.core.cdr.FileStatistics;
+import ro.proiect.licenta.rau.lbufileprocessor.service.db.DbService;
 import ro.proiect.licenta.rau.lbufileprocessor.service.fs.FileService;
 
 import java.nio.file.Path;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 
 @SpringBootApplication
 public class LbuFileProcessorApplication
@@ -37,6 +41,21 @@ public class LbuFileProcessorApplication
     {
       logger.error("Invalid Configuration. Application cannot start!");
     }
+
+    // Test - Remove this part
+    DbService dbService = LbuAppContext.getDbService();
+    FileStatistics fileStats = new FileStatistics("myfile.cdr");
+
+    fileStats.setDateProcessingStarted(ZonedDateTime.now().minus(5, ChronoUnit.SECONDS));
+    fileStats.setDateProcessingEnd(ZonedDateTime.now());
+    fileStats.setHeaderRecordExists(false);
+    fileStats.setTrailerRecordExists(false);
+    fileStats.setNumRecsTotal(78);
+    fileStats.setNumRecsSuccess(71);
+    fileStats.getErrors().setNumDecodingFailed(2);
+    fileStats.getErrors().setNumNotSupported(5);
+    boolean saved = dbService.saveFileStatistics(fileStats);
+    logger.warn("SAVE DB ENTRY RESULT: {}", saved);
 
     // start an infinite loop
     isRunning = true;

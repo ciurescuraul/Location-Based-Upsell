@@ -24,6 +24,12 @@ public class FileStatistics extends Cdr
   @JsonProperty("end")
   ZonedDateTime dateProcessingEnd;
 
+  @JsonProperty("header")
+  boolean headerRecordExists;
+
+  @JsonProperty("trailer")
+  boolean trailerRecordExists;
+
   @JsonProperty("total")
   int numRecsTotal;
 
@@ -135,6 +141,26 @@ public class FileStatistics extends Cdr
   public void incrementNumNotSupported()
   {
     this.getErrors().numNotSupported++;
+  }
+
+  public boolean hasHeaderRecord()
+  {
+    return headerRecordExists;
+  }
+
+  public boolean hasTrailerRecord()
+  {
+    return trailerRecordExists;
+  }
+
+  public void setHeaderRecordExists(boolean headerRecordExists)
+  {
+    this.headerRecordExists = headerRecordExists;
+  }
+
+  public void setTrailerRecordExists(boolean trailerRecordExists)
+  {
+    this.trailerRecordExists = trailerRecordExists;
   }
 
   public void incrementSuccess()
