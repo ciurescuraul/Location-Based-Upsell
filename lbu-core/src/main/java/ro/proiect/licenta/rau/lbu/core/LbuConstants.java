@@ -14,4 +14,6 @@ public class LbuConstants
       .ofPattern(JSON_DATE_FORMAT_TZ);
 
   public static final String COUNTRY_CODE_ROMANIA = "40";
+
+  public static final int EVENT_TYPE_VOICE_CALL = 1;
 }

@@ -7,15 +7,15 @@ import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 @Service
 public class JmsServiceImpl implements JmsService {
 
-    private final JmsConfig jmsConfig;
-
     @Autowired
-    public JmsServiceImpl(JmsConfig jmsConfig) {
-        this.jmsConfig = jmsConfig;
-    }
+    private JmsConfig jmsConfig;
 
     @Override
-    public void enqueueCall(VoiceCallDetails callDetails) {
+    public boolean enqueueCall(VoiceCallDetails callDetails) {
         // TODO Auto-generated method stub
+
+        boolean enqued = true;
+
+        return enqued;
     }
 }

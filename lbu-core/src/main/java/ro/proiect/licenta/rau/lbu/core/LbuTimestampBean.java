@@ -1,5 +1,7 @@
 package ro.proiect.licenta.rau.lbu.core;
 
+
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,27 +24,17 @@ public class LbuTimestampBean
 
   @JsonSerialize(using = ZonedDateTimeCustomSerializer.class)
   @JsonDeserialize(using = ZonedDateTimeCustomDeserializer.class)
-          @JsonProperty("modified")
-          @JsonInclude(JsonInclude.Include.NON_NULL)
+  @JsonProperty("modified")
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   ZonedDateTime lastModified;
 
   public LbuTimestampBean()
   {
   }
 
-  public void setCreated(ZonedDateTime time)
-  {
-    created = time;
-  }
-
   public void setCreatedNow()
   {
     created = ZonedDateTime.now();
-  }
-
-  public void setLastModified(ZonedDateTime modified)
-  {
-    lastModified = modified;
   }
 
   private void setLastModifiedNow()
@@ -55,8 +47,18 @@ public class LbuTimestampBean
     return created;
   }
 
+  public void setCreated(ZonedDateTime time)
+  {
+    created = time;
+  }
+
   public ZonedDateTime getLastModified()
   {
     return lastModified;
+  }
+
+  public void setLastModified(ZonedDateTime modified)
+  {
+    lastModified = modified;
   }
 }
