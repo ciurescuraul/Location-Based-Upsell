@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ro.proiect.licenta.rau.lbu.core.utils.ZonedDateTimeCustomDeserializer;
 import ro.proiect.licenta.rau.lbu.core.utils.ZonedDateTimeCustomSerializer;
 
-public class FileStatisticsCdr extends Cdr
+public class FileStatistics extends Cdr
 {
 
   String fileName;
@@ -35,7 +35,7 @@ public class FileStatisticsCdr extends Cdr
 
   FileStatsError errors = new FileStatsError();
 
-  public FileStatisticsCdr(String fileName)
+  public FileStatistics(String fileName)
   {
     super();
     this.fileName = fileName;
