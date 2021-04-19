@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="ro.proiect.licenta.rau">
+
+    <Properties>
+        <Property name="log-path">${sys:LOG_BASE:-./logs}</Property>
+        <Property name="lbu-main">lbu</Property>
+        <Property name="lbu-engine">${lbu-main}_engine</Property>
+        <Property name="log-pattern-with-thread">%d{yyyyMMdd HH:mm:ss.SSS} [%-5level] [%-7.7t] [%-27.27c{1}]: %msg%n
+        </Property>
+        <Property name="log-pattern-no-thread">%d{yyyyMMdd HH:mm:ss.SSS} [%-5level] [%-27.27c{1}]: %msg%n</Property>
+    </Properties>
+
+
+    <Appenders>
+
+        <RollingFile name="LogFile" fileName="${log-path}/${lbu-engine}.log"
+                     filePattern="${log-path}/${lbu-engine}.%d{yyyy-MM-dd}.%i.log">
+            <PatternLayout>
+                <pattern>${log-pattern-with-thread}</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>
+                    pattern=${log-pattern-with-thread}/>
+                </Pattern>
+            </PatternLayout>
+        </Console>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Logger name="ro.proiect.licenta.rau" level="DEBUG" additivity="false">
+            <AppenderRef ref="LogFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Root level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

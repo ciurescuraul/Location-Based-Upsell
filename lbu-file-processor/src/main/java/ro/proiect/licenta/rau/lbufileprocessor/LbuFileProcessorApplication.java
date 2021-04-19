@@ -86,7 +86,7 @@ public class LbuFileProcessorApplication
         }
       }
     }
-    logger.info("The end");
+    logger.info("File processor end.");
   }
 
   /**
