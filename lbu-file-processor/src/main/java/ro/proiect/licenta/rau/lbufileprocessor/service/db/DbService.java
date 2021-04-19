@@ -2,10 +2,12 @@ package ro.proiect.licenta.rau.lbufileprocessor.service.db;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 import ro.proiect.licenta.rau.lbu.core.cdr.FileStatistics;
+import ro.proiect.licenta.rau.lbufileprocessor.service.db.entity.LbuFileStatistics;
+import ro.proiect.licenta.rau.lbufileprocessor.service.db.repository.LbuFileStatisticsRepo;
 
 @Component
 public class DbService
@@ -21,8 +23,12 @@ public class DbService
   @Value("${spring.datasource.username}")
   String userName;
 
-  @Autowired
-  private LbuFileStatisticsRepository fileStatisticsRepo;
+  private LbuFileStatisticsRepo fileStatisticsRepo;
+
+  public DbService(LbuFileStatisticsRepo fileStatisticsRepo)
+  {
+    this.fileStatisticsRepo = fileStatisticsRepo;
+  }
 
   public boolean saveFileStatistics(FileStatistics stats)
   {
@@ -39,9 +45,9 @@ public class DbService
     catch (Exception e)
     {
       logger
-          .warn("Could not save FileStatistics record in DB for '{}', because of: {}",
-                stats.getFileName(),
-                e.toString());
+              .warn("Could not save FileStatistics record in DB for '{}', because of: {}",
+                      stats.getFileName(),
+                      e.toString());
       logger.debug("Stack trace: ", e);
       saved = false;
     }
@@ -50,3 +56,9 @@ public class DbService
   }
 
 }
+
+
+
+
+
+

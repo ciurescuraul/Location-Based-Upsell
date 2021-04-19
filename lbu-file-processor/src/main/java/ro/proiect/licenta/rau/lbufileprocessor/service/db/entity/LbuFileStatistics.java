@@ -1,7 +1,8 @@
-package ro.proiect.licenta.rau.lbufileprocessor.service.db;
+package ro.proiect.licenta.rau.lbufileprocessor.service.db.entity;
 
 import java.time.ZonedDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,9 @@ public class LbuFileStatistics
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  private String        origin;
+  @Column(nullable = false)
+  private String origin;
+
   private String        fileName;
   private ZonedDateTime startDate;
   private ZonedDateTime endDate;

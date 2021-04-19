@@ -42,8 +42,8 @@ CREATE TABLE `lbu`.`subscriber` (
 `has_roaming` TINYINT(1) NOT NULL,
 PRIMARY KEY (`msisdn`));
 
-INSERT INTO `academy`.`subscriber` (`msisdn`, `has_roaming`) VALUES ('0729036111', '1');
-INSERT INTO `academy`.`subscriber` (`msisdn`, `has_roaming`) VALUES ('0729036222', '0');
+INSERT INTO `lbu`.`lbu_subscriber` (`msisdn`, `has_roaming`) VALUES ('0729036111', '1');
+INSERT INTO `lbu`.`lbu_subscriber` (`msisdn`, `has_roaming`) VALUES ('0729036222', '0');
 ```
 =============================================================================
 ```
