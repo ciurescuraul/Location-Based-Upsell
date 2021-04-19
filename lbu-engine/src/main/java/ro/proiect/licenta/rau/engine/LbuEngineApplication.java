@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import ro.proiect.licenta.rau.engine.logic.CdrProcessor;
 import ro.proiect.licenta.rau.engine.service.jms.JmsService;
 import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 
@@ -19,6 +20,7 @@ public class LbuEngineApplication
 
   private static LbuEngineConfig config;
   private static JmsService      jmsService;
+  private static CdrProcessor    cdrProcessor;
 
   private static boolean isRunning;
 
@@ -28,6 +30,7 @@ public class LbuEngineApplication
 
     config = LbuAppContext.getLbuEngineConfig();
     jmsService = LbuAppContext.getJmsService();
+    cdrProcessor = LbuAppContext.getCdrProcessor();
 
     // some initial logging
     logStartupInfo();
@@ -42,6 +45,7 @@ public class LbuEngineApplication
       if (cdr.isPresent())
       {
         logger.debug("Dequeued: '{}'", cdr.get());
+        cdrProcessor.doProcess(cdr.get());
       }
       else
       {
@@ -73,7 +77,7 @@ public class LbuEngineApplication
     logger.info("####################################################");
     logger.info("");
     logger.info(" Configuration used: ");
-    logger.info("      App User: '{}'", config.getUserName());
+    logger.info("      App User: '{}'", config.getApplicationUser());
     logger.info("      sleep time when no file was found: {} sec",
                 config.getSleepTimeNoFileFound());
 

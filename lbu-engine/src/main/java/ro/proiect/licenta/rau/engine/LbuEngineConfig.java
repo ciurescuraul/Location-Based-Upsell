@@ -12,7 +12,7 @@ public class LbuEngineConfig
     @Value("${lbu.engine.sleep_time_no_file_found}")
     int sleepTimeNoFileFound;
 
-    public String getUserName() {
+    public String getApplicationUser() {
         return userName;
     }
 
