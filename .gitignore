@@ -37,3 +37,4 @@ build/
 ### files from: import, generate, rtr notices ###
 data/
 logs/
+MySQL.md
