@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor.service.db;
+package ro.proiect.licenta.rau.lbu.fileprocessor.service.db;
 
 import org.springframework.context.annotation.Configuration;
 

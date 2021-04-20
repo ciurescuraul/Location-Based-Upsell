@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor;
+package ro.proiect.licenta.rau.lbu.fileprocessor;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

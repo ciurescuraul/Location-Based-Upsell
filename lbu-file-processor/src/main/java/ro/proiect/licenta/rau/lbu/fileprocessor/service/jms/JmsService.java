@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor.service.jms;
+package ro.proiect.licenta.rau.lbu.fileprocessor.service.jms;
 
 import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 

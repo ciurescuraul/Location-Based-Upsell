@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor;
+package ro.proiect.licenta.rau.lbu.fileprocessor;
 
 import java.nio.file.Path;
 

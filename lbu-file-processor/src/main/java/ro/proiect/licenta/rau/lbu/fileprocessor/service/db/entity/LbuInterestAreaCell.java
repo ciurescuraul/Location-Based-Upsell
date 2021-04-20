@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor.service.db.entity;
+package ro.proiect.licenta.rau.lbu.fileprocessor.service.db.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,17 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class LbuInterestArea
+public class LbuInterestAreaCell
 {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  private String name;
-  private String type;
+  private int    areaId;
+  private String cellId;
 
-  public LbuInterestArea()
+  public LbuInterestAreaCell()
   {
     // required by ORM frameworks
   }
@@ -31,23 +31,23 @@ public class LbuInterestArea
     this.id = id;
   }
 
-  public String getName()
+  public int getAreaId()
   {
-    return name;
+    return areaId;
   }
 
-  public void setName(String name)
+  public void setAreaId(int areaId)
   {
-    this.name = name;
+    this.areaId = areaId;
   }
 
-  public String getType()
+  public String getCellId()
   {
-    return type;
+    return cellId;
   }
 
-  public void setType(String type)
+  public void setCellId(String cellId)
   {
-    this.type = type;
+    this.cellId = cellId;
   }
 }

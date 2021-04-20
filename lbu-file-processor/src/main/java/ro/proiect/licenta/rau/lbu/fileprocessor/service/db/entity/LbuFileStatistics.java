@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor.service.db.entity;
+package ro.proiect.licenta.rau.lbu.fileprocessor.service.db.entity;
 
 import java.time.ZonedDateTime;
 

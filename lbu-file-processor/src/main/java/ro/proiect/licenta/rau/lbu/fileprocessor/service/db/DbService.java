@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor.service.db;
+package ro.proiect.licenta.rau.lbu.fileprocessor.service.db;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import ro.proiect.licenta.rau.lbu.core.cdr.FileStatistics;
-import ro.proiect.licenta.rau.lbufileprocessor.service.db.entity.LbuFileStatistics;
-import ro.proiect.licenta.rau.lbufileprocessor.service.db.repository.LbuFileStatisticsRepo;
+import ro.proiect.licenta.rau.lbu.fileprocessor.service.db.entity.LbuFileStatistics;
+import ro.proiect.licenta.rau.lbu.fileprocessor.service.db.repository.LbuFileStatisticsRepo;
 
 @Component
 public class DbService

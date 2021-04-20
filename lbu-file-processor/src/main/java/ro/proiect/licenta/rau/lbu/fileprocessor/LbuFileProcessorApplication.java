@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbufileprocessor;
+package ro.proiect.licenta.rau.lbu.fileprocessor;
 
 import java.nio.file.Path;
 
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ro.proiect.licenta.rau.lbufileprocessor.service.fs.FileService;
+import ro.proiect.licenta.rau.lbu.fileprocessor.service.fs.FileService;
 
 @SpringBootApplication
 public class LbuFileProcessorApplication
