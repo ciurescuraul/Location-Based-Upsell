@@ -2,6 +2,7 @@ package ro.proiect.licenta.rau.lbufileprocessor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import ro.proiect.licenta.rau.lbufileprocessor.service.db.DbService;
 import ro.proiect.licenta.rau.lbufileprocessor.service.fs.FileService;
 import ro.proiect.licenta.rau.lbufileprocessor.service.fs.FileServiceImpl;
@@ -12,11 +13,11 @@ import ro.proiect.licenta.rau.lbufileprocessor.service.jms.SpringJmsService;
 public class LbuAppContext
 {
 
-  private static LbuConfig lbuConfig;
+  private final LbuConfig lbuConfig;
 
-  private static FileService fileService;
-  private static DbService   dbService;
-  private static JmsService  jmsService;
+  private final FileService fileService;
+  private final DbService   dbService;
+  private final JmsService  jmsService;
 
   @Autowired
   public LbuAppContext(LbuConfig lbuConfig,
@@ -30,22 +31,22 @@ public class LbuAppContext
     this.fileService = new FileServiceImpl(lbuConfig.getInputDir());
   }
 
-  public static LbuConfig getConfig()
+  public LbuConfig getConfig()
   {
     return lbuConfig;
   }
 
-  public static FileService getFileService()
+  public FileService getFileService()
   {
     return fileService;
   }
 
-  public static DbService getDbService()
+  public DbService getDbService()
   {
     return dbService;
   }
 
-  public static JmsService getJmsService()
+  public JmsService getJmsService()
   {
     return jmsService;
   }

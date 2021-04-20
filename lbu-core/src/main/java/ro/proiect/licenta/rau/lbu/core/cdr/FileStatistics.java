@@ -12,34 +12,34 @@ import ro.proiect.licenta.rau.lbu.core.utils.ZonedDateTimeCustomSerializer;
 public class FileStatistics extends Cdr
 {
 
-  String fileName;
+  private String fileName;
 
   @JsonSerialize(using = ZonedDateTimeCustomSerializer.class)
   @JsonDeserialize(using = ZonedDateTimeCustomDeserializer.class)
   @JsonProperty("start")
-  ZonedDateTime dateProcessingStarted;
+  private ZonedDateTime dateProcessingStarted;
 
   @JsonSerialize(using = ZonedDateTimeCustomSerializer.class)
   @JsonDeserialize(using = ZonedDateTimeCustomDeserializer.class)
   @JsonProperty("end")
-  ZonedDateTime dateProcessingEnd;
+  private ZonedDateTime dateProcessingEnd;
 
   @JsonProperty("header")
-  boolean headerRecordExists;
+  private boolean headerRecordExists;
 
   @JsonProperty("trailer")
-  boolean trailerRecordExists;
+  private boolean trailerRecordExists;
 
   @JsonProperty("total")
-  int numRecsTotal;
+  private int numRecsTotal;
 
   @JsonProperty("success")
-  int numRecsSuccess;
+  private int numRecsSuccess;
 
   @JsonProperty("failed")
-  int numRecsError;
+  private int numRecsError;
 
-  FileStatsError errors = new FileStatsError();
+  private FileStatsError errors = new FileStatsError();
 
   public FileStatistics(String fileName)
   {
@@ -135,12 +135,12 @@ public class FileStatistics extends Cdr
 
   public void incrementNumDecodingFailed()
   {
-    this.getErrors().numDecodingFailed++;
+    this.errors.incrementNumDecodingFailed();
   }
 
   public void incrementNumNotSupported()
   {
-    this.getErrors().numNotSupported++;
+    this.errors.incrementNumNotSupported();
   }
 
   public boolean hasHeaderRecord()

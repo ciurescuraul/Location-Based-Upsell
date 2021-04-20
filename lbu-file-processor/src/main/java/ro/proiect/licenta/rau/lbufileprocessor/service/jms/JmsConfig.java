@@ -15,13 +15,13 @@ public class JmsConfig
   // TODO: read JMS configuration (url, queue name)
 
   @Value("${lbu.jms.broker_url}")
-  protected String brokerUrl;
+  private String brokerUrl;
 
   @Value("${lbu.jms.queue_name}")
-  protected String queueName;
+  private String queueName;
 
   @Value("${lbu.jms.user_name}")
-  protected String userName;
+  private String userName;
 
   @Bean
   public ActiveMQConnectionFactory senderActiveMqConnectionFactory()
@@ -45,4 +45,8 @@ public class JmsConfig
     return converter;
   }
 
+  public String getUserName()
+  {
+    return userName;
+  }
 }

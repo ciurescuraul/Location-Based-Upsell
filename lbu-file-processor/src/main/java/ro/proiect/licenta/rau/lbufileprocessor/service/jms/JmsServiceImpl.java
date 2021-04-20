@@ -1,21 +1,27 @@
 package ro.proiect.licenta.rau.lbufileprocessor.service.jms;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 
 @Service
-public class JmsServiceImpl implements JmsService {
+public class JmsServiceImpl implements JmsService
+{
 
-    @Autowired
-    private JmsConfig jmsConfig;
+  private final JmsConfig jmsConfig;
 
-    @Override
-    public boolean enqueueCall(VoiceCallDetails callDetails) {
-        // TODO Auto-generated method stub
+  public JmsServiceImpl(JmsConfig jmsConfig)
+  {
+    this.jmsConfig = jmsConfig;
+  }
 
-        boolean enqued = true;
+  @Override
+  public boolean enqueueCall(VoiceCallDetails callDetails)
+  {
+    boolean enqueued = true;
 
-        return enqued;
-    }
+    // TODO implement this part
+
+    return enqueued;
+  }
 }

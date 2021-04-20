@@ -17,7 +17,7 @@ public class DbServiceImpl implements DbService
   public Optional<InterestArea> getAreaId(String cellId) throws SQLException
   {
     // TODO Auto-generated method stub
-    return null;
+    return Optional.empty();
   }
 
   @Override

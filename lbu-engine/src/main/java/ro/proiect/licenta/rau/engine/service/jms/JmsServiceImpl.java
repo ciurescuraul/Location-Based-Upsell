@@ -10,12 +10,9 @@ import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 public class JmsServiceImpl implements JmsService
 {
 
-  // @Autowired
-  // private JmsConfig jmsConfig;
-
   @Override
   public Optional<VoiceCallDetails> dequeueCall()
   {
-    return Optional.ofNullable(null);
+    return Optional.empty();
   }
 }

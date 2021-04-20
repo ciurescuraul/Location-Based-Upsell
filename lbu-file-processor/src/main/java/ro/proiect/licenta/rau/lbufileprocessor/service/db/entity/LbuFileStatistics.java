@@ -34,6 +34,7 @@ public class LbuFileStatistics
 
   public LbuFileStatistics()
   {
+    // required by ORM frameworks
   }
 
   public LbuFileStatistics(String origin, String fileName)

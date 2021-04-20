@@ -2,10 +2,11 @@ package ro.proiect.licenta.rau.lbufileprocessor.service.fs;
 
 import java.nio.file.Path;
 
-public interface FileService {
+public interface FileService
+{
 
-    public Path getNextFile();
+  Path getNextFile();
 
-    public boolean directoryExists(String path);
+  boolean directoryExists(String path);
 
 }

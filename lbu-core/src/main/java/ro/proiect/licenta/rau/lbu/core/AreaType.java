@@ -7,7 +7,7 @@ public enum AreaType
   AIRPORT(1),
   CONCERT(2);
 
-  private int areaCode;
+  private final int areaCode;
 
   private AreaType(int areaCode)
   {
@@ -16,6 +16,7 @@ public enum AreaType
 
   /**
    * Return AreaType by AreaCode
+   * 
    * @param areaCode
    * @return
    */

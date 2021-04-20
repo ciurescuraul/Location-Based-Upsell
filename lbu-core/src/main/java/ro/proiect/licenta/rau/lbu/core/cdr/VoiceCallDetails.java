@@ -5,16 +5,16 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({ "msisdn", "location", "starttime", "duration" })
-public class VoiceCallDetails
+public class VoiceCallDetails extends Cdr
 {
 
-  String        msisnd;
-  String        location;
-  LocalDateTime callStartTime;
-  int           duration;
+  private String        msisnd;
+  private String        location;
+  private LocalDateTime callStartTime;
+  private int           duration;
 
-  public VoiceCallDetails(String msisnd) {
-    super();
+  public VoiceCallDetails(String msisnd)
+  {
     this.msisnd = msisnd;
     callStartTime = LocalDateTime.now();
   }

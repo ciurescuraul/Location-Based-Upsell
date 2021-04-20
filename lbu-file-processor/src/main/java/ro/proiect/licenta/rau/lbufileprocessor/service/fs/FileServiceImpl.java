@@ -2,40 +2,46 @@ package ro.proiect.licenta.rau.lbufileprocessor.service.fs;
 
 import java.nio.file.Path;
 
-public class FileServiceImpl implements FileService{
+public class FileServiceImpl implements FileService
+{
 
-    private String parentDirName;
+  private String parentDirName;
 
-    private Path parentDir;
+  private Path parentDir;
 
-    public FileServiceImpl(String parentDirName) {
-        this.parentDirName = parentDirName;
-        // we don't set the Path object at this point, because the path is not validated yet
-    }
+  public FileServiceImpl(String parentDirName)
+  {
+    this.parentDirName = parentDirName;
+    // we don't set the Path object at this point, because the path is not
+    // validated yet
+  }
 
-    @Override
-    public Path getNextFile() {
+  @Override
+  public Path getNextFile()
+  {
 
-        // TODO:
-        // - make sure to set the Path object, if it is not set already
-        // - pick the oldest file from directory having .cdr extension
-        // - if no file found return null
-        // - if problems appear log errors/warnings and return null
+    // TODO:
+    // - make sure to set the Path object, if it is not set already
+    // - pick the oldest file from directory having .cdr extension
+    // - if no file found return null
+    // - if problems appear log errors/warnings and return null
 
-        return null;
-    }
+    return null;
+  }
 
-    /**
-     * It checks whether a specified path represents an existing directory
-     * @param path
-     * @return
-     */
+  /**
+   * It checks whether a specified path represents an existing directory
+   * 
+   * @param path
+   * @return
+   */
 
-    @Override
-    public boolean directoryExists(String path) {
+  @Override
+  public boolean directoryExists(String path)
+  {
 
-        // TODO: implement this
+    // TODO: implement this
 
-        return true;
-    }
+    return true;
+  }
 }

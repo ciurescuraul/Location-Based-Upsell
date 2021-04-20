@@ -7,12 +7,11 @@ import org.springframework.context.annotation.Configuration;
 public class LbuConfig
 {
 
-
   @Value("${lbu.fp.input_dir}")
-  String inputDir;
+  private String inputDir;
 
   @Value("${lbu.fp.sleep_time_no_file_found}")
-  int sleepTimeNoFileFound;
+  private int sleepTimeNoFileFound;
 
   public String getInputDir()
   {

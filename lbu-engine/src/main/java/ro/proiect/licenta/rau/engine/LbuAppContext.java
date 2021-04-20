@@ -1,6 +1,5 @@
 package ro.proiect.licenta.rau.engine;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.proiect.licenta.rau.engine.logic.CdrProcessor;
@@ -12,47 +11,46 @@ import ro.proiect.licenta.rau.engine.service.sms.SmsService;
 public class LbuAppContext
 {
 
-  private static LbuEngineConfig lbuEngineConfig;
-  private static DbService       dbService;
-  private static JmsService      jmsService;
-  private static SmsService      smsService;
-  private static CdrProcessor    cdrProcessor;
+  private final LbuEngineConfig lbuEngineConfig;
+  private final DbService       dbService;
+  private final JmsService      jmsService;
+  private final SmsService      smsService;
+  private final CdrProcessor    cdrProcessor;
 
-  @Autowired
   public LbuAppContext(LbuEngineConfig lbuEngineConfig,
                        DbService dbService,
                        JmsService jmsService,
                        SmsService smsService,
                        CdrProcessor cdrProcessor)
   {
-    LbuAppContext.lbuEngineConfig = lbuEngineConfig;
-    LbuAppContext.dbService = dbService;
-    LbuAppContext.jmsService = jmsService;
-    LbuAppContext.smsService = smsService;
-    LbuAppContext.cdrProcessor = cdrProcessor;
+    this.lbuEngineConfig = lbuEngineConfig;
+    this.dbService = dbService;
+    this.jmsService = jmsService;
+    this.smsService = smsService;
+    this.cdrProcessor = cdrProcessor;
   }
 
-  public static LbuEngineConfig getLbuEngineConfig()
+  public LbuEngineConfig getLbuEngineConfig()
   {
     return lbuEngineConfig;
   }
 
-  public static DbService getDbService()
+  public DbService getDbService()
   {
     return dbService;
   }
 
-  public static JmsService getJmsService()
+  public JmsService getJmsService()
   {
     return jmsService;
   }
 
-  public static SmsService getSmsService()
+  public SmsService getSmsService()
   {
     return smsService;
   }
 
-  public static CdrProcessor getCdrProcessor()
+  public CdrProcessor getCdrProcessor()
   {
     return cdrProcessor;
   }

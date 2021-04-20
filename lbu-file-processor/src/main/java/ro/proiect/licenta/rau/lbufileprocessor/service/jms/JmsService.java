@@ -5,5 +5,5 @@ import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 public interface JmsService
 {
 
-  public boolean enqueueCall(VoiceCallDetails callDetails);
+  boolean enqueueCall(VoiceCallDetails callDetails);
 }

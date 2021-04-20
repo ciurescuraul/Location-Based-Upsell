@@ -18,6 +18,7 @@ public class LbuSubscriber
 
   public LbuSubscriber()
   {
+    // required by ORM frameworks
   }
 
   public Integer getId()

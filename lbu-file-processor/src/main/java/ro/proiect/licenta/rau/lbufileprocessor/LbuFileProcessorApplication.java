@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 import ro.proiect.licenta.rau.lbufileprocessor.service.fs.FileService;
 
@@ -17,44 +16,24 @@ public class LbuFileProcessorApplication
   static final Logger logger = LoggerFactory
       .getLogger(LbuFileProcessorApplication.class);
 
-  public static ConfigurableApplicationContext context;
-
   private static boolean isRunning;
-
-  private static LbuConfig   config;
-  private static FileService fileService;
 
   public static void main(String[] args)
   {
-    context = SpringApplication.run(LbuFileProcessorApplication.class, args);
+    LbuAppContext appContext = SpringApplication
+        .run(LbuFileProcessorApplication.class, args)
+        .getBean(LbuAppContext.class);
 
-    config = LbuAppContext.getConfig();
-    fileService = LbuAppContext.getFileService();
+    LbuConfig config = appContext.getConfig();
+    FileService fileService = appContext.getFileService();
 
-    // Some initial logging
+    // some initial logging
     logStartupInfo(config);
 
-    if (!validateConfiguration())
+    if (!validateConfiguration(fileService, config))
     {
       logger.error("Invalid Configuration. Application cannot start!");
     }
-
-    // Test - Remove this part
-    // DbService dbService = LbuAppContext.getDbService();
-    // FileStatistics fileStats = new FileStatistics("myfile.cdr");
-    //
-    // fileStats.setFileName(fileStats.getFileName());
-    // fileStats.setDateProcessingStarted(ZonedDateTime.now().minus(5,
-    // ChronoUnit.SECONDS));
-    // fileStats.setDateProcessingEnd(ZonedDateTime.now());
-    // fileStats.setHeaderRecordExists(false);
-    // fileStats.setTrailerRecordExists(false);
-    // fileStats.setNumRecsTotal(78);
-    // fileStats.setNumRecsSuccess(71);
-    // fileStats.getErrors().setNumDecodingFailed(2);
-    // fileStats.getErrors().setNumNotSupported(5);
-    // boolean saved = dbService.saveFileStatistics(fileStats);
-    // logger.warn("SAVE DB ENTRY RESULT: {}", saved);
 
     // start an infinite loop
     isRunning = true;
@@ -67,8 +46,7 @@ public class LbuFileProcessorApplication
       // if file was found, process it. If nothing is found, sleep a bit.
       if (currentFile != null)
       {
-        FileProcessor fileProcessor = new VoiceCallFileProcessor(currentFile);
-        fileProcessor.doProcess();
+        new VoiceCallFileProcessor().doProcess(currentFile);
       }
       else
       {
@@ -78,10 +56,9 @@ public class LbuFileProcessorApplication
         {
           Thread.sleep(config.getSleepTimeNoFileFound() * 1000L);
         }
-        catch (InterruptedException ie)
+        catch (InterruptedException e)
         {
-          logger.error("{}", ie.toString());
-          logger.debug("Stack trace: ", ie);
+          logger.error(e.getMessage(), e);
         }
       }
     }
@@ -111,10 +88,13 @@ public class LbuFileProcessorApplication
   /**
    * Validates the configuration
    * 
+   * @param fileService
+   * @param config
    * @return FALSE if configuration is not valid and the application cannot
    *         start
    */
-  private static boolean validateConfiguration()
+  private static boolean validateConfiguration(FileService fileService,
+                                               LbuConfig config)
   {
     if (!fileService.directoryExists(config.getInputDir()))
     {

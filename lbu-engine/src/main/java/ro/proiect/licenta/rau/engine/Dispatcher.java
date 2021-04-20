@@ -26,7 +26,8 @@ public class Dispatcher
 
   @Bean
   @Primary
-  public DbService getCustomDbService(){
+  public DbService getCustomDbService()
+  {
     switch (config.getApplicationUser())
     {
       case "rci":

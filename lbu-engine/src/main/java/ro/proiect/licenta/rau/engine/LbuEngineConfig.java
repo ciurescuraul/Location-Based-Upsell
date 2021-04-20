@@ -6,17 +6,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class LbuEngineConfig
 {
-    @Value("${lbu.user_name}")
-    String userName;
 
-    @Value("${lbu.engine.sleep_time_no_file_found}")
-    int sleepTimeNoFileFound;
+  @Value("${lbu.user_name}")
+  private String userName;
 
-    public String getApplicationUser() {
-        return userName;
-    }
+  @Value("${lbu.engine.sleep_time_no_file_found}")
+  private int sleepTimeIfFileNotFound;
 
-    public int getSleepTimeNoFileFound() {
-        return sleepTimeNoFileFound;
-    }
+  public String getApplicationUser()
+  {
+    return userName;
+  }
+
+  public int getSleepTimeIfFileNotFound()
+  {
+    return sleepTimeIfFileNotFound;
+  }
 }

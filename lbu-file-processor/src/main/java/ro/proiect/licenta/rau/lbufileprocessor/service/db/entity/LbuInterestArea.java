@@ -18,6 +18,7 @@ public class LbuInterestArea
 
   public LbuInterestArea()
   {
+    // required by ORM frameworks
   }
 
   public Integer getId()

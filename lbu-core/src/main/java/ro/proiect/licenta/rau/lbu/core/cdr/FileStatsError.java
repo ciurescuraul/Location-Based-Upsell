@@ -8,10 +8,20 @@ public class FileStatsError
 {
 
   @JsonProperty("decodingFailed")
-  int numDecodingFailed;
+  private int numDecodingFailed;
 
   @JsonProperty("notSupported")
-  int numNotSupported;
+  private int numNotSupported;
+
+  public void incrementNumDecodingFailed()
+  {
+    numDecodingFailed++;
+  }
+
+  public void incrementNumNotSupported()
+  {
+    numNotSupported++;
+  }
 
   public int getNumDecodingFailed()
   {

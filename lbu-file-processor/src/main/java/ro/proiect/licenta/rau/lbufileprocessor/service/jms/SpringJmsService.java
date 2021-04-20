@@ -5,12 +5,12 @@ import javax.jms.Message;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.jmx.JmxException;
-
 import org.springframework.stereotype.Component;
+
 import ro.proiect.licenta.rau.lbu.core.LbuConstants;
 import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 
@@ -29,11 +29,15 @@ public class SpringJmsService implements JmsService
 
   static final Logger logger = LoggerFactory.getLogger(SpringJmsService.class);
 
-  @Autowired
-  JmsTemplate jmsTemplate;
+  private final JmsTemplate jmsTemplate;
+  private final String      jmsUserName;
 
-  @Autowired
-  JmsConfig jmsConfig;
+  public SpringJmsService(JmsTemplate jmsTemplate,
+                          @Value("${lbu.jms.user_name}") String jmsUserName)
+  {
+    this.jmsTemplate = jmsTemplate;
+    this.jmsUserName = jmsUserName;
+  }
 
   @Override
   public boolean enqueueCall(VoiceCallDetails callDetails)
@@ -51,7 +55,7 @@ public class SpringJmsService implements JmsService
             {
               message.setLongProperty("EventType",
                                       LbuConstants.EVENT_TYPE_VOICE_CALL);
-              message.setStringProperty("UserName", jmsConfig.userName);
+              message.setStringProperty("JmsUserName", jmsUserName);
               return message;
             }
           });

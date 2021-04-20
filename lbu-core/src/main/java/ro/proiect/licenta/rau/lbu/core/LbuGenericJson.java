@@ -3,22 +3,24 @@ package ro.proiect.licenta.rau.lbu.core;
 public class LbuGenericJson
 {
 
-  private LbuTimestampBean ts = new LbuTimestampBean();
+  private LbuTimestampBean timestamp = new LbuTimestampBean();
 
   public LbuGenericJson(boolean writeOnly)
   {
     // no need to save lastModified for writeOnly objects
     if (writeOnly)
     {
-      ts.setLastModified(null);
+      timestamp.setLastModified(null);
     }
   }
 
-  public LbuTimestampBean getTs() {
-    return ts;
+  public LbuTimestampBean getTimestamp()
+  {
+    return timestamp;
   }
 
-  public void setTs(LbuTimestampBean timeStamp) {
-    ts = timeStamp;
+  public void setTimestamp(LbuTimestampBean timeStamp)
+  {
+    timestamp = timeStamp;
   }
 }

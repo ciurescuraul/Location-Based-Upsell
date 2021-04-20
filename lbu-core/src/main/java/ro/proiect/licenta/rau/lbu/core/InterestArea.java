@@ -9,11 +9,11 @@ public class InterestArea
   /**
    * instance variables
    */
-  int      id;
-  AreaType areaType;
-  String   name;
+  private int      id;
+  private AreaType areaType;
+  private String   name;
 
-  List<String> cellIds = new ArrayList<String>();
+  private List<String> cellIds = new ArrayList<>();
 
   /**
    * getters and setters

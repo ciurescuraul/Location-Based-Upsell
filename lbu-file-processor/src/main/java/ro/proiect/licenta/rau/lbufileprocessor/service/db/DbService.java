@@ -14,20 +14,18 @@ public class DbService
 {
 
   static final Logger logger = LoggerFactory.getLogger(DbService.class);
-
+  private final LbuFileStatisticsRepo lbuFileStatisticsRepo;
   /**
    * For more information read this article
    * https://spring.io/guides/gs/accessing-data-mysql/
    */
 
   @Value("${spring.datasource.username}")
-  String userName;
+  private String dbUserName;
 
-  private LbuFileStatisticsRepo fileStatisticsRepo;
-
-  public DbService(LbuFileStatisticsRepo fileStatisticsRepo)
+  public DbService(LbuFileStatisticsRepo lbuFileStatisticsRepo)
   {
-    this.fileStatisticsRepo = fileStatisticsRepo;
+    this.lbuFileStatisticsRepo = lbuFileStatisticsRepo;
   }
 
   public boolean saveFileStatistics(FileStatistics stats)
@@ -35,19 +33,18 @@ public class DbService
     boolean saved = true;
 
     LbuFileStatistics entity = new LbuFileStatistics(stats);
-
-    entity.setOrigin(userName);
+    entity.setOrigin(dbUserName);
 
     try
     {
-      fileStatisticsRepo.save(entity);
+      lbuFileStatisticsRepo.save(entity);
     }
     catch (Exception e)
     {
       logger
-              .warn("Could not save FileStatistics record in DB for '{}', because of: {}",
-                      stats.getFileName(),
-                      e.toString());
+          .warn("Could not save FileStatistics record in DB for '{}', because of: {}",
+                stats.getFileName(),
+                e.toString());
       logger.debug("Stack trace: ", e);
       saved = false;
     }
@@ -56,9 +53,3 @@ public class DbService
   }
 
 }
-
-
-
-
-
-
