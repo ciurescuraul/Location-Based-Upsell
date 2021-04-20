@@ -1,12 +1,14 @@
 package ro.proiect.licenta.rau.engine.service.db;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import java.sql.SQLException;
+import java.util.Optional;
 
-@Service
-public class DbService
+import ro.proiect.licenta.rau.lbu.core.InterestArea;
+
+public interface DbService
 {
 
-  static final Logger logger = LoggerFactory.getLogger(DbService.class);
+  public Optional<InterestArea> getAreaId(String cellId) throws SQLException;
+
+  public boolean hasRoamingPackage(String msisdn) throws SQLException;
 }

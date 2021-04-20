@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import ro.proiect.licenta.rau.engine.logic.CdrProcessor;
 import ro.proiect.licenta.rau.engine.logic.CdrProcessorImpl;
+import ro.proiect.licenta.rau.engine.service.db.DbService;
+import ro.proiect.licenta.rau.engine.service.db.DbServiceImpl;
 import ro.proiect.licenta.rau.engine.service.jms.JmsService;
 import ro.proiect.licenta.rau.engine.service.jms.JmsServiceImpl;
 import ro.proiect.licenta.rau.engine.service.sms.SmsService;
@@ -20,6 +22,18 @@ public class Dispatcher
   public Dispatcher(LbuEngineConfig config)
   {
     this.config = config;
+  }
+
+  @Bean
+  @Primary
+  public DbService getCustomDbService(){
+    switch (config.getApplicationUser())
+    {
+      case "rci":
+        return new DbServiceImpl();
+      default:
+        throw new IllegalArgumentException();
+    }
   }
 
   @Bean
