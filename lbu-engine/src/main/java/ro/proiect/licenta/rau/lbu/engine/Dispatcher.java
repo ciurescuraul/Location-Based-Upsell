@@ -30,7 +30,7 @@ public class Dispatcher
   {
     switch (config.getApplicationUser())
     {
-      case "rci":
+      case "userName":
         return new DbServiceImpl();
       default:
         throw new IllegalArgumentException();
@@ -43,7 +43,7 @@ public class Dispatcher
   {
     switch (config.getApplicationUser())
     {
-      case "rci":
+      case "userName":
         return new JmsServiceImpl();
       default:
         throw new IllegalArgumentException();
@@ -56,7 +56,7 @@ public class Dispatcher
   {
     switch (config.getApplicationUser())
     {
-      case "rci":
+      case "userName":
         return new CdrProcessorImpl();
       default:
         throw new IllegalArgumentException();
@@ -69,7 +69,7 @@ public class Dispatcher
   {
     switch (config.getApplicationUser())
     {
-      case "rci":
+      case "userName":
         return new SmsServiceImpl();
       default:
         throw new IllegalArgumentException();

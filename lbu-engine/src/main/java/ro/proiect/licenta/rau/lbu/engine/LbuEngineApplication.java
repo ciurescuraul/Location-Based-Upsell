@@ -73,7 +73,7 @@ public class LbuEngineApplication
     logger.info(" Configuration used: ");
     logger.info("      App User: '{}'",
                 appContext.getLbuEngineConfig().getApplicationUser());
-    logger.info("      sleep time when no file was found: {} sec",
+    logger.info("      sleep time when queue is empty: {} sec",
                 appContext.getLbuEngineConfig().getSleepTimeIfFileNotFound());
 
   }

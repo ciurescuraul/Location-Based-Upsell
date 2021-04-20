@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 public class LbuEngineConfig
 {
 
-  @Value("${lbu.user_name}")
+  @Value("${lbu.engine.user_name}")
   private String userName;
 
-  @Value("${lbu.engine.sleep_time_no_file_found}")
+  @Value("${lbu.engine.sleep_time_queue_is_empty}")
   private int sleepTimeIfFileNotFound;
 
   public String getApplicationUser()
