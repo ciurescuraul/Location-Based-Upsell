@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.engine.service.sms;
+package ro.proiect.licenta.rau.lbu.engine.service.sms;
 
 public interface SmsService
 {

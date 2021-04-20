@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.lbuengine;
+package ro.proiect.licenta.rau.lbu.engine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

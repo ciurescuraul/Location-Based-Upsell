@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.engine.service.sms;
+package ro.proiect.licenta.rau.lbu.engine.service.sms;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

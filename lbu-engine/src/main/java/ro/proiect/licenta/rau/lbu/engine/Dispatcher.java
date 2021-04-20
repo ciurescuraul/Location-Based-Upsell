@@ -1,17 +1,17 @@
-package ro.proiect.licenta.rau.engine;
+package ro.proiect.licenta.rau.lbu.engine;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import ro.proiect.licenta.rau.engine.logic.CdrProcessor;
-import ro.proiect.licenta.rau.engine.logic.CdrProcessorImpl;
-import ro.proiect.licenta.rau.engine.service.db.DbService;
-import ro.proiect.licenta.rau.engine.service.db.DbServiceImpl;
-import ro.proiect.licenta.rau.engine.service.jms.JmsService;
-import ro.proiect.licenta.rau.engine.service.jms.JmsServiceImpl;
-import ro.proiect.licenta.rau.engine.service.sms.SmsService;
-import ro.proiect.licenta.rau.engine.service.sms.SmsServiceImpl;
+import ro.proiect.licenta.rau.lbu.engine.logic.CdrProcessor;
+import ro.proiect.licenta.rau.lbu.engine.logic.CdrProcessorImpl;
+import ro.proiect.licenta.rau.lbu.engine.service.db.DbService;
+import ro.proiect.licenta.rau.lbu.engine.service.db.DbServiceImpl;
+import ro.proiect.licenta.rau.lbu.engine.service.jms.JmsService;
+import ro.proiect.licenta.rau.lbu.engine.service.jms.JmsServiceImpl;
+import ro.proiect.licenta.rau.lbu.engine.service.sms.SmsService;
+import ro.proiect.licenta.rau.lbu.engine.service.sms.SmsServiceImpl;
 
 @Component
 public class Dispatcher

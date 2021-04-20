@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.engine.service.jms;
+package ro.proiect.licenta.rau.lbu.engine.service.jms;
 
 import java.util.Optional;
 

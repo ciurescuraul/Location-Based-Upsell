@@ -1,21 +1,21 @@
-package ro.proiect.licenta.rau.engine;
+package ro.proiect.licenta.rau.lbu.engine;
 
 import org.springframework.stereotype.Component;
 
-import ro.proiect.licenta.rau.engine.logic.CdrProcessor;
-import ro.proiect.licenta.rau.engine.service.db.DbService;
-import ro.proiect.licenta.rau.engine.service.jms.JmsService;
-import ro.proiect.licenta.rau.engine.service.sms.SmsService;
+import ro.proiect.licenta.rau.lbu.engine.logic.CdrProcessor;
+import ro.proiect.licenta.rau.lbu.engine.service.db.DbService;
+import ro.proiect.licenta.rau.lbu.engine.service.jms.JmsService;
+import ro.proiect.licenta.rau.lbu.engine.service.sms.SmsService;
 
 @Component
 public class LbuAppContext
 {
 
   private final LbuEngineConfig lbuEngineConfig;
-  private final DbService       dbService;
-  private final JmsService      jmsService;
-  private final SmsService      smsService;
-  private final CdrProcessor    cdrProcessor;
+  private final DbService dbService;
+  private final JmsService jmsService;
+  private final SmsService smsService;
+  private final CdrProcessor cdrProcessor;
 
   public LbuAppContext(LbuEngineConfig lbuEngineConfig,
                        DbService dbService,

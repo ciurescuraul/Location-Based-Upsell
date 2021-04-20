@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.engine;
+package ro.proiect.licenta.rau.lbu.engine;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

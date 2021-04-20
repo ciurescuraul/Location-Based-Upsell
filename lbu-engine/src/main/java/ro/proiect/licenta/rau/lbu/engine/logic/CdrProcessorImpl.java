@@ -1,4 +1,4 @@
-package ro.proiect.licenta.rau.engine.logic;
+package ro.proiect.licenta.rau.lbu.engine.logic;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
