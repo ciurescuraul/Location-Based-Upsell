@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ro.proiect.licenta.rau.lbu.fileprocessor.service.fs.FileServiceImpl;
+import ro.proiect.licenta.rau.lbu.fileprocessor.service.fs.FileService;
 
 @SpringBootApplication
 public class LbuFileProcessorApplication
@@ -25,7 +25,7 @@ public class LbuFileProcessorApplication
         .getBean(LbuAppContext.class);
 
     LbuConfig config = appContext.getConfig();
-    FileServiceImpl fileService = appContext.getFileService();
+    FileService fileService = appContext.getFileService();
 
     // some initial logging
     logStartupInfo(config);
@@ -93,7 +93,7 @@ public class LbuFileProcessorApplication
    * @return FALSE if configuration is not valid and the application cannot
    *         start
    */
-  private static boolean validateConfiguration(FileServiceImpl fileService,
+  private static boolean validateConfiguration(FileService fileService,
                                                LbuConfig config)
   {
     if (!fileService.directoryExists(config.getInputDir()))

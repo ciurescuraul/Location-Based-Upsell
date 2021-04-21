@@ -21,8 +21,7 @@ public class FileServiceImpl implements FileService
   public FileServiceImpl(String parentDirName)
   {
     this.parentDirName = parentDirName;
-    // we don't set the Path object at this point, because the path is not
-    // validated yet
+    this.parentDir = Paths.get(parentDirName);
   }
 
   @Override
