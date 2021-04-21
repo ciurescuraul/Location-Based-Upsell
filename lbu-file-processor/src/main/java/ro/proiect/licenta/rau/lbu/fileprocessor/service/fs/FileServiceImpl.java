@@ -1,8 +1,8 @@
 package ro.proiect.licenta.rau.lbu.fileprocessor.service.fs;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -40,6 +40,7 @@ public class FileServiceImpl implements FileService
 
   /**
    * It checks whether a specified path represents an existing directory
+   * If directory doesn't exist is creating a new one
    * 
    * @param path
    * @return
@@ -48,41 +49,31 @@ public class FileServiceImpl implements FileService
   @Override
   public boolean directoryExists(String path)
   {
-    // check if directory exists
-    // if not exists create directory
 
     Path currentPath = Paths.get(path);
     boolean exists = Files.exists(currentPath);
 
     if (!exists)
     {
+      logger.error("Creating directory '{}' ...", currentPath);
       try
       {
-        Files.createDirectory(currentPath.normalize().toRealPath());
+
+        Path directory = Files.createDirectories(currentPath);
+
+        logger.info("Directory '{}' was created successfully", directory);
+        exists = true;
+      }
+      catch (FileAlreadyExistsException fileAlreadyExistsException)
+      {
+        logger.info("Directory already exists !");
       }
       catch (IOException e)
       {
-        e.printStackTrace();
+        logger.error(e.getMessage(), e);
       }
     }
 
-    try
-    {
-      currentPath.normalize().toRealPath();
-    }
-    catch (IOException e)
-    {
-      try
-      {
-        throw new NoSuchFileException(path);
-      }
-      catch (NoSuchFileException noSuchFileException)
-      {
-        logger.error(noSuchFileException.getMessage(), noSuchFileException);
-        return false;
-      }
-    }
-
-    return true;
+    return exists;
   }
 }
