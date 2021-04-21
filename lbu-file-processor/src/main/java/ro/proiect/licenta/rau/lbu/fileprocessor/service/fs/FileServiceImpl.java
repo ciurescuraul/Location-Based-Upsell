@@ -1,9 +1,18 @@
 package ro.proiect.licenta.rau.lbu.fileprocessor.service.fs;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileServiceImpl implements FileService
 {
+
+  Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
 
   private String parentDirName;
 
@@ -39,8 +48,40 @@ public class FileServiceImpl implements FileService
   @Override
   public boolean directoryExists(String path)
   {
+    // check if directory exists
+    // if not exists create directory
 
-    // TODO: implement this
+    Path currentPath = Paths.get(path);
+    boolean exists = Files.exists(currentPath);
+
+    if (!exists)
+    {
+      try
+      {
+        Files.createDirectory(currentPath.normalize().toRealPath());
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+
+    try
+    {
+      currentPath.normalize().toRealPath();
+    }
+    catch (IOException e)
+    {
+      try
+      {
+        throw new NoSuchFileException(path);
+      }
+      catch (NoSuchFileException noSuchFileException)
+      {
+        logger.error(noSuchFileException.getMessage(), noSuchFileException);
+        return false;
+      }
+    }
 
     return true;
   }

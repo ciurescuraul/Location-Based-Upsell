@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.proiect.licenta.rau.lbu.fileprocessor.service.db.DbService;
+import ro.proiect.licenta.rau.lbu.fileprocessor.service.fs.FileServiceImpl;
 import ro.proiect.licenta.rau.lbu.fileprocessor.service.jms.JmsService;
 import ro.proiect.licenta.rau.lbu.fileprocessor.service.jms.SpringJmsService;
-import ro.proiect.licenta.rau.lbu.fileprocessor.service.fs.FileService;
-import ro.proiect.licenta.rau.lbu.fileprocessor.service.fs.FileServiceImpl;
 
 @Component
 public class LbuAppContext
@@ -15,7 +14,7 @@ public class LbuAppContext
 
   private final LbuConfig lbuConfig;
 
-  private final FileService fileService;
+  private final FileServiceImpl fileService;
   private final DbService dbService;
   private final JmsService jmsService;
 
@@ -36,7 +35,7 @@ public class LbuAppContext
     return lbuConfig;
   }
 
-  public FileService getFileService()
+  public FileServiceImpl getFileService()
   {
     return fileService;
   }
