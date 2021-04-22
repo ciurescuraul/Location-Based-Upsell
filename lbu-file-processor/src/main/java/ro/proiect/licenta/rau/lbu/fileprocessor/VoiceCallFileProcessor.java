@@ -16,6 +16,15 @@ public class VoiceCallFileProcessor extends FileProcessor
 
     logger.info("Going to process file: '{}'", file.getFileName());
 
+    try
+    {
+      Thread.sleep(3000);
+    }
+    catch (InterruptedException e)
+    {
+      e.printStackTrace();
+    }
+
     // TODO: implement this part
     // - open the file
     // - read the file record by record
