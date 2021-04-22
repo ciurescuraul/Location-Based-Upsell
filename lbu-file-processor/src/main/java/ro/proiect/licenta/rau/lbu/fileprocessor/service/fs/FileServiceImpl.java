@@ -5,6 +5,9 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,29 +15,36 @@ import org.slf4j.LoggerFactory;
 public class FileServiceImpl implements FileService
 {
 
-  Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
+  private static final Logger logger = LoggerFactory
+      .getLogger(FileServiceImpl.class);
 
-  private String parentDirName;
-
-  private Path parentDir;
+  private final Path   parentDir;
 
   public FileServiceImpl(String parentDirName)
   {
-    this.parentDirName = parentDirName;
     this.parentDir = Paths.get(parentDirName);
   }
 
   @Override
   public Path getNextFile()
   {
+    List<Path> pathList;
 
-    // TODO:
-    // - make sure to set the Path object, if it is not set already
-    // - pick the oldest file from directory having .cdr extension
-    // - if no file found return null
-    // - if problems appear log errors/warnings and return null
+    try
+    {
+      pathList = Files.list(parentDir).filter(p -> !Files.isDirectory(p))
+          .filter(p -> p.toString().endsWith(".cdr"))
+          .filter(Files::isRegularFile)
+          .sorted(Comparator.comparingLong(p -> p.toFile().lastModified()))
+          .map(Path::toAbsolutePath).collect(Collectors.toList());
+    }
+    catch (IOException e)
+    {
+      logger.warn(e.getMessage(), e);
+      return null;
+    }
 
-    return null;
+    return pathList.stream().findFirst().orElse(null);
   }
 
   /**
@@ -48,24 +58,22 @@ public class FileServiceImpl implements FileService
   @Override
   public boolean directoryExists(String path)
   {
-
-    Path currentPath = Paths.get(path);
-    boolean exists = Files.exists(currentPath);
+    boolean exists = Files.exists(Paths.get(path));
 
     if (!exists)
     {
-      logger.error("Creating directory '{}' ...", currentPath);
+      logger.warn("Creating directory '{}' ...", Paths.get(path));
       try
       {
 
-        Path directory = Files.createDirectories(currentPath);
+        Path directory = Files.createDirectories(Paths.get(path));
 
-        logger.info("Directory '{}' was created successfully", directory);
+        logger.warn("Directory '{}' was created successfully", directory);
         exists = true;
       }
       catch (FileAlreadyExistsException fileAlreadyExistsException)
       {
-        logger.info("Directory already exists !");
+        logger.warn("Directory already exists !");
       }
       catch (IOException e)
       {
