@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ro.proiect.licenta.rau.lbu.fileprocessor.service.record.RecordProcessorImpl;
 
 public class VoiceCallFileProcessor extends FileProcessor
 {
@@ -17,7 +18,7 @@ public class VoiceCallFileProcessor extends FileProcessor
   static final Logger logger = LoggerFactory
       .getLogger(VoiceCallFileProcessor.class);
 
-  private RecordProcessor recordProcessor = new RecordProcessor();
+  private RecordProcessorImpl recordProcessor = new RecordProcessorImpl();
 
   public void doProcess(Path file)
   {
@@ -28,7 +29,7 @@ public class VoiceCallFileProcessor extends FileProcessor
     // - read the file record by record DONE
     // - process each record DONE
     // - use a RecordProcessor similar with FileProcessor DONE
-    // - parse, validate  DONE
+    // - parse, validate DONE
     // create corresponding VoiceCallDetails object and enqueue it
     // write unit tests for record validation procedures
     // if record validation fails, write the record into an .error file
@@ -62,7 +63,7 @@ public class VoiceCallFileProcessor extends FileProcessor
       {
         String processRecord = recordProcessor.processRecord(record);
 
-        if (processRecord.equals(RecordProcessor.VALIDATION_SUCCESS))
+        if (processRecord.equals(RecordProcessorImpl.VALIDATION_SUCCESS))
         {
           logger.info(recordProcessor.toString());
         }
