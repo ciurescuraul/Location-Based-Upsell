@@ -37,5 +37,4 @@ build/
 ### files from: import, generate, rtr notices ###
 data/
 logs/
-docs/MySQL.txt
 apache-activemq-5.16.1/
