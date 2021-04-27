@@ -10,7 +10,13 @@ import org.springframework.stereotype.Component;
 public class Record
 {
 
-  private int recordType;
+  public static final String HEADER  = "HEADER";
+  public static final String BODY    = "BODY";
+  public static final String TRAILER = "TRAILER";
+  public static final String VALIDATION_FAILED  = "FAILED";
+  public static final String VALIDATION_SUCCESS = "SUCCESS";
+
+  private String recordType;
 
   private String        fileName;
   private LocalDateTime createdDate;
@@ -27,7 +33,7 @@ public class Record
   private String bNumber;
 
   @Size(min = 0, max = 7200)
-  private Integer duration;
+  private int duration;
 
   @Size(min = 10, max = 20)
   private String cellId;
@@ -40,12 +46,47 @@ public class Record
   {
   }
 
-  public int getRecordType()
+  public Record(String recordType, String fileName, LocalDateTime createdDate)
+  {
+    this.recordType = recordType;
+    this.fileName = fileName;
+    this.createdDate = createdDate;
+  }
+
+  public Record(String recordType,
+                String uniqueId,
+                LocalDateTime timeStamp,
+                String aNumber,
+                String bNumber,
+                int duration,
+                String cellId)
+  {
+    this.recordType = recordType;
+    this.uniqueId = uniqueId;
+    this.timeStamp = timeStamp;
+    this.aNumber = aNumber;
+    this.bNumber = bNumber;
+    this.duration = duration;
+    this.cellId = cellId;
+  }
+
+  public Record(String recordType,
+                String numRecsTotal,
+                String numCallsToShortNumbers,
+                String totalDuration)
+  {
+    this.recordType = recordType;
+    this.numRecsTotal = numRecsTotal;
+    this.numCallsToShortNumbers = numCallsToShortNumbers;
+    this.totalDuration = totalDuration;
+  }
+
+  public String getRecordType()
   {
     return recordType;
   }
 
-  public void setRecordType(int recordType)
+  public void setRecordType(String recordType)
   {
     this.recordType = recordType;
   }
@@ -161,20 +202,15 @@ public class Record
   }
 
   @Override
-  public String toString() {
-    return "Record{" +
-            "recordType=" + recordType +
-            ", fileName='" + fileName + '\'' +
-            ", createdDate=" + createdDate +
-            ", uniqueId='" + uniqueId + '\'' +
-            ", timeStamp=" + timeStamp +
-            ", aNumber='" + aNumber + '\'' +
-            ", bNumber='" + bNumber + '\'' +
-            ", duration=" + duration +
-            ", cellId='" + cellId + '\'' +
-            ", numRecsTotal='" + numRecsTotal + '\'' +
-            ", numCallsToShortNumbers='" + numCallsToShortNumbers + '\'' +
-            ", totalDuration='" + totalDuration + '\'' +
-            '}';
+  public String toString()
+  {
+    return "Record{" + "recordType=" + recordType + ", fileName='" + fileName +
+           '\'' + ", createdDate=" + createdDate + ", uniqueId='" + uniqueId +
+           '\'' + ", timeStamp=" + timeStamp + ", aNumber='" + aNumber + '\'' +
+           ", bNumber='" + bNumber + '\'' + ", duration=" + duration +
+           ", cellId='" + cellId + '\'' + ", numRecsTotal='" + numRecsTotal +
+           '\'' + ", numCallsToShortNumbers='" + numCallsToShortNumbers + '\'' +
+           ", totalDuration='" + totalDuration + '\'' + '}';
   }
+
 }

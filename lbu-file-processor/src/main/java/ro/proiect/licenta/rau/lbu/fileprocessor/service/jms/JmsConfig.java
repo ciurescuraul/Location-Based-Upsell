@@ -1,36 +1,40 @@
 package ro.proiect.licenta.rau.lbu.fileprocessor.service.jms;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 
 @Configuration
+@ComponentScan("ro.proiect.licenta.rau.lbu")
 public class JmsConfig
 {
 
-  // TODO: read JMS configuration (url, queue name)
+  // TODO: read JMS configuration (url, queue, name)
 
-  @Value("${lbu.jms.broker_url}")
-  private String brokerUrl;
+  private final String queueName = "jmsQueue";
+  private final String userName  = "jms-username";
+  private final int    priority  = 1;
+  private String brokerUrl = "tcp://localhost:61616";
 
-  @Value("${lbu.jms.queue_name}")
-  private String queueName;
-
-  @Value("${lbu.jms.user_name}")
-  private String userName;
+  @Bean
+  public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer()
+  {
+    return new PropertySourcesPlaceholderConfigurer();
+  }
 
   @Bean
   public ActiveMQConnectionFactory senderActiveMqConnectionFactory()
   {
-    ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
+    ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
 
-    activeMQConnectionFactory.setBrokerURL(brokerUrl);
+    factory.setBrokerURL(brokerUrl);
 
-    return activeMQConnectionFactory;
+    return factory;
   }
 
   @Bean // Serialize message content to json using TextMessage
@@ -45,8 +49,18 @@ public class JmsConfig
     return converter;
   }
 
+  public String getQueueName()
+  {
+    return queueName;
+  }
+
   public String getUserName()
   {
     return userName;
+  }
+
+  public int getPriority()
+  {
+    return priority;
   }
 }

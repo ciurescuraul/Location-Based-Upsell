@@ -1,6 +1,6 @@
 package ro.proiect.licenta.rau.lbu.fileprocessor.service.record;
 
-public interface RecordProcessor
+public interface RecordProcessorInt
 {
 
   String processRecord(String line);

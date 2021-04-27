@@ -9,27 +9,29 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
-public class RecordProcessorImpl implements RecordProcessor {
+import ro.proiect.licenta.rau.lbu.core.cdr.VoiceCallDetails;
 
-  public static final int HEADER             = 1;
-  public static final int BODY               = 2;
-  public static final int TRAILER            = 3;
-  public static final String     VALIDATION_FAILED  = "FAILED";
-  public static final String     VALIDATION_SUCCESS = "SUCCESS";
-  private final Logger    logger             = LoggerFactory
-      .getLogger(RecordProcessorImpl.class);
+@Component
+public class RecordProcessorOld implements RecordProcessorInt
+{
+
+  public static final String HEADER             = "HEADER";
+  public static final String BODY               = "BODY";
+  public static final String TRAILER            = "TRAILER";
+  public static final String VALIDATION_FAILED  = "FAILED";
+  public static final String VALIDATION_SUCCESS = "SUCCESS";
+  private final Logger       logger             = LoggerFactory
+      .getLogger(RecordProcessorOld.class);
 
   @Autowired
   private final Record record = new Record();
 
-  public RecordProcessorImpl()
+  public RecordProcessorOld()
   {
   }
 
   public String processRecord(String line)
   {
-
     try
     {
       parseLine(line);
@@ -54,6 +56,7 @@ public class RecordProcessorImpl implements RecordProcessor {
    */
   private void parseLine(String line)
   {
+
     String[] splitArray = line.split("(\\s*[|]\\s*)+");
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMddHHmmss",
                                                            Locale.ENGLISH);
@@ -139,10 +142,16 @@ public class RecordProcessorImpl implements RecordProcessor {
     return false;
   }
 
-  @Override
-  public String toString() {
-    return "RecordProcessor{" +
-            "record=" + record +
-            '}';
+  public VoiceCallDetails buildVoiceCallDetails()
+  {
+
+    VoiceCallDetails voiceCallDetails = new VoiceCallDetails(record
+        .getaNumber());
+
+    voiceCallDetails.setLocation(record.getCellId());
+    voiceCallDetails.setCallStartTime(record.getTimeStamp());
+    voiceCallDetails.setDuration(record.getDuration());
+
+    return voiceCallDetails;
   }
 }

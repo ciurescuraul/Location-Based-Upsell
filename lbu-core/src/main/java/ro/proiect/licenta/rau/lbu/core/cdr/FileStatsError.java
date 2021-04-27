@@ -42,4 +42,11 @@ public class FileStatsError
   {
     numNotSupported = notSupported;
   }
+
+  @Override
+  public String toString()
+  {
+    return "FileStatsError{" + "numDecodingFailed=" + numDecodingFailed +
+           ", numNotSupported=" + numNotSupported + '}';
+  }
 }

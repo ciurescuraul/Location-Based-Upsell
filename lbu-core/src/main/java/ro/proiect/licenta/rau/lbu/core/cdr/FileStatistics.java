@@ -174,4 +174,16 @@ public class FileStatistics extends Cdr
     incrementNumRecsTotal();
     incrementNumRecsError();
   }
+
+  @Override
+  public String toString()
+  {
+    return "FileStatistics{" + "fileName='" + fileName + '\'' +
+           ", dateProcessingStarted=" + dateProcessingStarted +
+           ", dateProcessingEnd=" + dateProcessingEnd +
+           ", headerRecordExists=" + headerRecordExists +
+           ", trailerRecordExists=" + trailerRecordExists + ", numRecsTotal=" +
+           numRecsTotal + ", numRecsSuccess=" + numRecsSuccess +
+           ", numRecsError=" + numRecsError + ", errors=" + errors + '}';
+  }
 }

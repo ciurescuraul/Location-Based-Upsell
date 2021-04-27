@@ -5,7 +5,7 @@ import javax.jms.Message;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.jmx.JmxException;
@@ -30,13 +30,14 @@ public class SpringJmsService implements JmsService
   static final Logger logger = LoggerFactory.getLogger(SpringJmsService.class);
 
   private final JmsTemplate jmsTemplate;
-  private final String      jmsUserName;
 
-  public SpringJmsService(JmsTemplate jmsTemplate,
-                          @Value("${lbu.jms.user_name}") String jmsUserName)
+  @Autowired
+  private JmsConfig jmsConfig;
+
+  @Autowired
+  public SpringJmsService(JmsTemplate jmsTemplate)
   {
     this.jmsTemplate = jmsTemplate;
-    this.jmsUserName = jmsUserName;
   }
 
   @Override
@@ -47,7 +48,7 @@ public class SpringJmsService implements JmsService
     try
     {
       jmsTemplate
-          .convertAndSend("jmsQueue", callDetails, new MessagePostProcessor()
+          .convertAndSend(jmsConfig.getQueueName(), callDetails, new MessagePostProcessor()
           {
 
             @Override
@@ -55,7 +56,7 @@ public class SpringJmsService implements JmsService
             {
               message.setLongProperty("EventType",
                                       LbuConstants.EVENT_TYPE_VOICE_CALL);
-              message.setStringProperty("JmsUserName", jmsUserName);
+              message.setStringProperty("JmsUserName", jmsConfig.getUserName());
               return message;
             }
           });
