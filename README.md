@@ -31,7 +31,7 @@
     - Additional subscriber information may be needed
         - Do not send a message for roaming package if subscriber already has the package assigned
 
-![alt text](https://github.com/ciurescuraul/location-based-upsell/blob/943e828ffb74dd8d4fbee31b60acc80fc6df30d6/HLD.png)
+![alt text](https://raw.githubusercontent.com/ciurescuraul/location-based-upsell/main/images/Location-Based%20Upsell-HLD.png)
 
 # FileProcessor
 
