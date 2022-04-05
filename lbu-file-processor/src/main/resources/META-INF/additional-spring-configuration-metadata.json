@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "lbu.fp.sleep_time_no_file_found",
+      "type": "java.lang.String",
+      "description": "Description for lbu.fp.sleep_time_no_file_found."
+  }
+] }
